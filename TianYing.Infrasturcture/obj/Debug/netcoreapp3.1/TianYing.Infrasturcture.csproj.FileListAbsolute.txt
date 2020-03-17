@@ -5,3 +5,9 @@ G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netco
 G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.AssemblyInfo.cs
 G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Infrasturcture.runtimeconfig.json
 G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Infrasturcture.runtimeconfig.dev.json
+G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Infrasturcture.pdb
+G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Core.dll
+G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Core.pdb
+G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.csproj.CopyComplete
+G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.dll
+G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.pdb

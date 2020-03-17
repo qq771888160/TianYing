@@ -28,7 +28,7 @@ namespace TianYing.Infrasturcture
                 {
                     Id = Guid.Parse("22ac7044-7600-478c-98b7-b6198dd7354b"),
                     Name = "Microsoft",
-                    Introduction = "Create Compay"
+                    Introduction = "Create Compay"               
                 },
                      new Company
                      {
