@@ -1,0 +1,7 @@
+G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Infrasturcture.deps.json
+G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Infrasturcture.dll
+G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.csprojAssemblyReference.cache
+G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.AssemblyInfoInputs.cache
+G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.AssemblyInfo.cs
+G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Infrasturcture.runtimeconfig.json
+G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Infrasturcture.runtimeconfig.dev.json

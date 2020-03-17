@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TianYing", "TianYing\TianYing.csproj", "{0A3711F9-D673-424A-93A0-A2271948953B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TianYing", "TianYing\TianYing.csproj", "{0A3711F9-D673-424A-93A0-A2271948953B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TianYing.Core", "TianYing.Core\TianYing.Core.csproj", "{2F085D2A-65B2-4007-A86B-3A858C13303B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TianYing.Infrasturcture", "TianYing.Infrasturcture\TianYing.Infrasturcture.csproj", "{A3E4EB9E-6065-452E-9482-6C235A92752C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{0A3711F9-D673-424A-93A0-A2271948953B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A3711F9-D673-424A-93A0-A2271948953B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A3711F9-D673-424A-93A0-A2271948953B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F085D2A-65B2-4007-A86B-3A858C13303B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F085D2A-65B2-4007-A86B-3A858C13303B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F085D2A-65B2-4007-A86B-3A858C13303B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F085D2A-65B2-4007-A86B-3A858C13303B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3E4EB9E-6065-452E-9482-6C235A92752C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3E4EB9E-6065-452E-9482-6C235A92752C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3E4EB9E-6065-452E-9482-6C235A92752C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3E4EB9E-6065-452E-9482-6C235A92752C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
