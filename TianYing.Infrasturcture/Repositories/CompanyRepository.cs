@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TianYing.Core.Entities;
 using TianYing.Core.Interfaces;
+using TianYing.Core.ResourceParameters;
 using TianYing.Infrasturcture.Databases;
 
 namespace TianYing.Infrasturcture.Repositories
@@ -28,11 +29,14 @@ namespace TianYing.Infrasturcture.Repositories
 
             company.Id = Guid.NewGuid();
 
-            foreach (var employee in company.Employees)
+            if (company.Employees != null)
             {
-                employee.Id = Guid.NewGuid();
+                foreach (var employee in company.Employees)
+                {
+                    employee.Id = Guid.NewGuid();
+                }
             }
-
+    
             _myContext.Companies.Add(company);
 
         }
@@ -57,9 +61,34 @@ namespace TianYing.Infrasturcture.Repositories
             _myContext.Companies.Remove(company);
         }
 
-        public async Task<IEnumerable<Company>> GetCompaniesAsync()
+        public async Task<IEnumerable<Company>> GetCompaniesAsync(CompanyResourceParameter parameters)
         {
-            return await _myContext.Companies.ToListAsync();
+            if (parameters ==null)
+            {
+                throw new ArgumentNullException(nameof(parameters));
+            }
+
+            if(string.IsNullOrWhiteSpace(parameters.CompanyName)&&string.IsNullOrWhiteSpace(parameters.SearchTerm))
+            {
+                return await _myContext.Companies.ToListAsync();
+            }
+
+            var queryExpression = _myContext.Companies as IQueryable<Company>;
+
+            if (!string.IsNullOrWhiteSpace(parameters.CompanyName))
+            {
+                parameters.CompanyName = parameters.CompanyName.Trim();
+                queryExpression = queryExpression.Where(x => x.Name == parameters.CompanyName);
+            }
+
+            if (!string.IsNullOrWhiteSpace(parameters.SearchTerm))
+            {
+                parameters.SearchTerm = parameters.SearchTerm.Trim();
+                queryExpression = queryExpression.Where(x => x.Name.Contains(parameters.SearchTerm) ||
+                  x.Introduction.Contains(parameters.SearchTerm));
+            }
+
+            return await queryExpression.ToListAsync();
         }
 
         public async Task<IEnumerable<Company>> GetCompaniesAsync(IEnumerable<Guid> CompanyIds)
