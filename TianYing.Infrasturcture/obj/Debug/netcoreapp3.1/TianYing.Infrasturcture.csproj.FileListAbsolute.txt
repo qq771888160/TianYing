@@ -11,3 +11,16 @@ G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netco
 G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.csproj.CopyComplete
 G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.dll
 G:\学习资料\站点\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.pdb
+G:\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Infrasturcture.deps.json
+G:\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Infrasturcture.runtimeconfig.json
+G:\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Infrasturcture.runtimeconfig.dev.json
+G:\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Infrasturcture.dll
+G:\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Infrasturcture.pdb
+G:\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Core.dll
+G:\TianYing\TianYing\TianYing.Infrasturcture\bin\Debug\netcoreapp3.1\TianYing.Core.pdb
+G:\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.csprojAssemblyReference.cache
+G:\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.AssemblyInfoInputs.cache
+G:\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.AssemblyInfo.cs
+G:\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.csproj.CopyComplete
+G:\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.dll
+G:\TianYing\TianYing\TianYing.Infrasturcture\obj\Debug\netcoreapp3.1\TianYing.Infrasturcture.pdb

@@ -95,5 +95,12 @@ namespace TianYing.Controllers
 
             return CreatedAtRoute(nameof(GetCompany), new { companyId = returnSource.Id }, returnSource); // 创建Post 完成 返回201 Created 状态码
         }
+
+        [HttpOptions]
+        public IActionResult GetCompaniesOptions()
+        {
+            Response.Headers.Add("Allow", "GET, POST, OPTIONS");
+            return Ok();
+        }
     }
 }

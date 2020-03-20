@@ -6,3 +6,11 @@ G:\学习资料\站点\TianYing\TianYing\TianYing.Core\obj\Debug\netcoreapp3.1\T
 G:\学习资料\站点\TianYing\TianYing\TianYing.Core\obj\Debug\netcoreapp3.1\TianYing.Core.AssemblyInfo.cs
 G:\学习资料\站点\TianYing\TianYing\TianYing.Core\obj\Debug\netcoreapp3.1\TianYing.Core.dll
 G:\学习资料\站点\TianYing\TianYing\TianYing.Core\obj\Debug\netcoreapp3.1\TianYing.Core.pdb
+G:\TianYing\TianYing\TianYing.Core\bin\Debug\netcoreapp3.1\TianYing.Core.deps.json
+G:\TianYing\TianYing\TianYing.Core\bin\Debug\netcoreapp3.1\TianYing.Core.dll
+G:\TianYing\TianYing\TianYing.Core\bin\Debug\netcoreapp3.1\TianYing.Core.pdb
+G:\TianYing\TianYing\TianYing.Core\obj\Debug\netcoreapp3.1\TianYing.Core.csprojAssemblyReference.cache
+G:\TianYing\TianYing\TianYing.Core\obj\Debug\netcoreapp3.1\TianYing.Core.AssemblyInfoInputs.cache
+G:\TianYing\TianYing\TianYing.Core\obj\Debug\netcoreapp3.1\TianYing.Core.AssemblyInfo.cs
+G:\TianYing\TianYing\TianYing.Core\obj\Debug\netcoreapp3.1\TianYing.Core.dll
+G:\TianYing\TianYing\TianYing.Core\obj\Debug\netcoreapp3.1\TianYing.Core.pdb
