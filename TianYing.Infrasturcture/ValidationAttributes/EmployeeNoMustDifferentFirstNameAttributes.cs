@@ -10,11 +10,11 @@ namespace TianYing.Infrasturcture.ValidationAttributes
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var addResource = (EmployeeAddResource)validationContext.ObjectInstance;
+            var addResource = (EmployeeAddOrUpdateResource)validationContext.ObjectInstance;
 
             if (addResource.EmployeeNo == addResource.FirstName)
             {
-                return new ValidationResult("员工编号不可以和名相等", new[] { nameof(EmployeeAddResource) });
+                return new ValidationResult("员工编号不可以和名相等", new[] { nameof(EmployeeAddOrUpdateResource) });
             }
 
             return ValidationResult.Success;
