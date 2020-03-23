@@ -24,6 +24,7 @@ namespace TianYing.Extensions
                 .ForMember(dest=>dest.Age,opt=>opt.MapFrom(src=>DateTime.Now.Year-src.DateofBirth.Year));
             CreateMap<EmployeeAddResource, Employee>();
             CreateMap<EmployeeUpdateResource, Employee>();
+            CreateMap< Employee, EmployeeUpdateResource>();
 
         }
     }

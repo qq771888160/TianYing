@@ -134,7 +134,7 @@ namespace TianYing.Controllers
         }
 
         [HttpPatch("{employeeId}")]
-        public async Task<IActionResult> PartiallyUpdateEmployeeForCompany(Guid companyId, Guid employeeId, JsonPatchDocument<EmployeeUpdateResource> patchDocument)
+        public async Task<IActionResult> PartiallyUpdateEmployeeForCompany(Guid companyId, Guid employeeId, JsonPatchDocument<EmployeeUpdateResource> patchDocument)  // 修改header application/json-patch+json
         {
             if (!await companyRepository.CompanyExistsAsync(companyId))
             {
@@ -144,7 +144,28 @@ namespace TianYing.Controllers
             var employeeEntity = await employeeRepository.GetEmployeeAsync(companyId, employeeId);
             if (employeeEntity == null)
             {
-                return NotFound();
+                var employeeUpdateResource = new EmployeeUpdateResource();
+                patchDocument.ApplyTo(employeeUpdateResource, ModelState);
+
+                if (!TryValidateModel(employeeUpdateResource))  
+                {
+                    return ValidationProblem(ModelState);
+                }
+
+                var employeeAdd = mapper.Map<Employee>(employeeUpdateResource);
+                employeeAdd.Id = employeeId;
+
+                employeeRepository.AddEmployee(employeeId, employeeAdd);
+                 await unitOfWork.SaveAsync();
+
+                var resourceReturn = mapper.Map<EmployeeResource>(employeeAdd);
+
+                return CreatedAtRoute(nameof(GetEmployeeForCompany), new
+                {
+                    companyId = companyId,
+                    employeeId = resourceReturn.Id
+                }, resourceReturn);
+
             }
 
             var entityToPatch = mapper.Map<EmployeeUpdateResource>(employeeEntity);
@@ -152,7 +173,7 @@ namespace TianYing.Controllers
             //需要处理验证错误
             patchDocument.ApplyTo(entityToPatch,ModelState);
 
-            if (!TryValidateModel(entityToPatch))
+            if (!TryValidateModel(entityToPatch))  // 将patchDocument类型 验证
             {
                 return ValidationProblem(ModelState);
             }
@@ -165,6 +186,29 @@ namespace TianYing.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{employeeId}")]
+        public async Task<IActionResult> DeleteEmployeeForCompany(Guid companyId,Guid employeeId)
+        {
+            if (!await companyRepository.CompanyExistsAsync(companyId))
+            {
+                return NotFound();
+            }
+
+            var employee = await employeeRepository.GetEmployeeAsync(companyId, employeeId);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            employeeRepository.DeleteEmployee(employee);
+
+           await  unitOfWork.SaveAsync();
+
+            return NoContent();
+
+        }
+
         public override ActionResult ValidationProblem([ActionResultObjectValue]ModelStateDictionary modelStateDictionary)
         {
             var options = HttpContext.RequestServices.GetRequiredService<IOptions<ApiBehaviorOptions>>();
@@ -173,3 +217,4 @@ namespace TianYing.Controllers
         }
     }
 }
+ 

@@ -19,19 +19,21 @@ namespace TianYing.Controllers
         private readonly ICompanyRepository _companyRepository;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IEmployeeRepository employeeRepository;
 
-        public CompaniesController(ICompanyRepository companyRepository, IMapper mapper,IUnitOfWork unitOfWork)
+        public CompaniesController(ICompanyRepository companyRepository, IMapper mapper, IUnitOfWork unitOfWork, IEmployeeRepository employeeRepository)
         {
             _companyRepository = companyRepository ??
                 throw new ArgumentNullException(nameof(companyRepository));
             _mapper = mapper ??
                 throw new ArgumentNullException(nameof(mapper));
             this.unitOfWork = unitOfWork;
+            this.employeeRepository = employeeRepository;
         }
 
         [HttpGet]
         [HttpHead]
-        public async Task<ActionResult<IEnumerable<CompanyResource>>> GetCompanies( [FromQuery]CompanyResourceParameter parameters)
+        public async Task<ActionResult<IEnumerable<CompanyResource>>> GetCompanies([FromQuery]CompanyResourceParameter parameters)
         {
             var companies = await _companyRepository.GetCompaniesAsync(parameters);
 
@@ -56,7 +58,7 @@ namespace TianYing.Controllers
             //return new JsonResult(companies);
         }
 
-        [HttpGet("{companyId}", Name =nameof(GetCompany))]  // api/companies/{companyId}  控制器级别的URI
+        [HttpGet("{companyId}", Name = nameof(GetCompany))]  // api/companies/{companyId}  控制器级别的URI
 
         //[HttpGet]
         //[Route("{companId}")]   这种写法也行
@@ -88,8 +90,8 @@ namespace TianYing.Controllers
             //}  
 
             var entity = _mapper.Map<Company>(company);
-             _companyRepository.AddCompanyAsync(entity);
-           await   unitOfWork.SaveAsync();
+            _companyRepository.AddCompanyAsync(entity);
+            await unitOfWork.SaveAsync();
 
             var returnSource = _mapper.Map<CompanyResource>(entity);
 
@@ -101,6 +103,25 @@ namespace TianYing.Controllers
         {
             Response.Headers.Add("Allow", "GET, POST, OPTIONS");
             return Ok();
+        }
+
+        [HttpDelete("{companyId}")]
+        public async Task<IActionResult> DeleteCompany(Guid companyId)
+        {
+            var companyEntity = await _companyRepository.GetCompanyAsync(companyId);
+
+            if (companyEntity == null)
+            {
+                return NotFound();
+            }
+
+            await employeeRepository.GetEmployeesAsync(companyId, null, null);
+
+            _companyRepository.DeleteCompany(companyEntity);
+            await unitOfWork.SaveAsync();
+
+            return NoContent();
+
         }
     }
 }
