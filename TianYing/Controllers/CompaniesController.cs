@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -19,19 +21,21 @@ namespace TianYing.Controllers
         private readonly ICompanyRepository _companyRepository;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IEmployeeRepository employeeRepository;
 
-        public CompaniesController(ICompanyRepository companyRepository, IMapper mapper,IUnitOfWork unitOfWork)
+        public CompaniesController(ICompanyRepository companyRepository, IMapper mapper, IUnitOfWork unitOfWork, IEmployeeRepository employeeRepository)
         {
             _companyRepository = companyRepository ??
                 throw new ArgumentNullException(nameof(companyRepository));
             _mapper = mapper ??
                 throw new ArgumentNullException(nameof(mapper));
             this.unitOfWork = unitOfWork;
+            this.employeeRepository = employeeRepository;
         }
 
-        [HttpGet]
+        [HttpGet(Name = nameof(GetCompanies))]
         [HttpHead]
-        public async Task<ActionResult<IEnumerable<CompanyResource>>> GetCompanies( [FromQuery]CompanyResourceParameter parameters)
+        public async Task<ActionResult<IEnumerable<CompanyResource>>> GetCompanies([FromQuery]CompanyResourceParameter parameters)
         {
             var companies = await _companyRepository.GetCompaniesAsync(parameters);
 
@@ -47,6 +51,25 @@ namespace TianYing.Controllers
 
             //}
 
+            var PerviousPageLink = companies.HasPrevious ? CreateCompaniesResourceUri(parameters, ResourceUriType.PreviousPage) : null;
+
+            var nextPageLink = companies.HasNext ? CreateCompaniesResourceUri(parameters, ResourceUriType.NextPage) : null;
+
+            var paginationMetadata = new 
+            {
+                    totalCount =companies.TotalCount,
+                    pageSize =companies.PageSize,
+                    currentPage =companies.CurrentPage,
+                    totalPages=companies.TotalPages,
+                    PerviousPageLink,
+                    nextPageLink
+            };
+
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata,new JsonSerializerOptions
+            { 
+                    Encoder=JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            }));
+
             var companyResources = _mapper.Map<IEnumerable<CompanyResource>>(companies);
 
             //return NotFound();  // NotFound  空集合也认为是找到了 所以不是NotFound
@@ -56,7 +79,7 @@ namespace TianYing.Controllers
             //return new JsonResult(companies);
         }
 
-        [HttpGet("{companyId}", Name =nameof(GetCompany))]  // api/companies/{companyId}  控制器级别的URI
+        [HttpGet("{companyId}", Name = nameof(GetCompany))]  // api/companies/{companyId}  控制器级别的URI
 
         //[HttpGet]
         //[Route("{companId}")]   这种写法也行
@@ -88,8 +111,8 @@ namespace TianYing.Controllers
             //}  
 
             var entity = _mapper.Map<Company>(company);
-             _companyRepository.AddCompanyAsync(entity);
-           await   unitOfWork.SaveAsync();
+            _companyRepository.AddCompanyAsync(entity);
+            await unitOfWork.SaveAsync();
 
             var returnSource = _mapper.Map<CompanyResource>(entity);
 
@@ -101,6 +124,55 @@ namespace TianYing.Controllers
         {
             Response.Headers.Add("Allow", "GET, POST, OPTIONS");
             return Ok();
+        }
+
+        [HttpDelete("{companyId}")]
+        public async Task<IActionResult> DeleteCompany(Guid companyId)
+        {
+            var companyEntity = await _companyRepository.GetCompanyAsync(companyId);
+
+            if (companyEntity == null)
+            {
+                return NotFound();
+            }
+
+            await employeeRepository.GetEmployeesAsync(companyId, null);
+
+            _companyRepository.DeleteCompany(companyEntity);
+            await unitOfWork.SaveAsync();
+
+            return NoContent();
+        }
+
+        public string CreateCompaniesResourceUri(CompanyResourceParameter parameters, ResourceUriType type)
+        {
+            switch (type)
+            {
+                case ResourceUriType.PreviousPage:
+                    return Url.Link(nameof(GetCompanies), new
+                    {
+                        pageNumber = parameters.PageNumber - 1,
+                        pageSize = parameters.PageSize,
+                        companyName = parameters.CompanyName,
+                        searchTerm = parameters.SearchTerm
+                    });
+                case ResourceUriType.NextPage:
+                    return Url.Link(nameof(GetCompanies), new
+                    {
+                        pageNumber = parameters.PageNumber + 1,
+                        pageSize = parameters.PageSize,
+                        companyName = parameters.CompanyName,
+                        searchTerm = parameters.SearchTerm
+                    });
+                default:
+                    return Url.Link(nameof(GetCompanies), new
+                    {
+                        pageNumber = parameters.PageNumber,
+                        pageSize = parameters.PageSize,
+                        companyName = parameters.CompanyName,
+                        searchTerm = parameters.SearchTerm
+                    });
+            }
         }
     }
 }

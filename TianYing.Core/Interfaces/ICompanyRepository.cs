@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using TianYing.Core.Entities;
+using TianYing.Core.Helpers;
 using TianYing.Core.ResourceParameters;
 
 namespace TianYing.Core.Interfaces
 {
     public interface ICompanyRepository
     {
-        Task<IEnumerable<Company>> GetCompaniesAsync( CompanyResourceParameter parameters);
+        Task<PagedList<Company>> GetCompaniesAsync( CompanyResourceParameter parameters);
         Task<Company> GetCompanyAsync(Guid CompanyId);
 
         Task<IEnumerable<Company>> GetCompaniesAsync(IEnumerable<Guid> CompanyIds);

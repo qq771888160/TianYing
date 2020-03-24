@@ -15,7 +15,7 @@ namespace TianYing.Infrasturcture.Databases.EntityConfigurations
             builder.Property(x => x.FirstName).IsRequired().HasMaxLength(50);
             builder.Property(x => x.LastName).IsRequired().HasMaxLength(50);
 
-            builder.HasOne(x => x.Company).WithMany(x => x.Employees).HasForeignKey(x => x.CompanyId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.Company).WithMany(x => x.Employees).HasForeignKey(x => x.CompanyId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

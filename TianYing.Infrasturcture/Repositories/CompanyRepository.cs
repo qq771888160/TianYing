@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TianYing.Core.Entities;
+using TianYing.Core.Helpers;
 using TianYing.Core.Interfaces;
 using TianYing.Core.ResourceParameters;
 using TianYing.Infrasturcture.Databases;
@@ -36,14 +37,14 @@ namespace TianYing.Infrasturcture.Repositories
                     employee.Id = Guid.NewGuid();
                 }
             }
-    
+
             _myContext.Companies.Add(company);
 
         }
 
         public async Task<bool> CompanyExistsAsync(Guid companyId)
         {
-            if(companyId==Guid.Empty)
+            if (companyId == Guid.Empty)
             {
                 throw new ArgumentNullException(nameof(companyId));
             }
@@ -53,7 +54,7 @@ namespace TianYing.Infrasturcture.Repositories
 
         public void DeleteCompany(Company company)
         {
-           if(company == null)
+            if (company == null)
             {
                 throw new ArgumentNullException(nameof(company));
             }
@@ -61,17 +62,17 @@ namespace TianYing.Infrasturcture.Repositories
             _myContext.Companies.Remove(company);
         }
 
-        public async Task<IEnumerable<Company>> GetCompaniesAsync(CompanyResourceParameter parameters)
+        public async Task<PagedList<Company>> GetCompaniesAsync(CompanyResourceParameter parameters)
         {
-            if (parameters ==null)
+            if (parameters == null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            if(string.IsNullOrWhiteSpace(parameters.CompanyName)&&string.IsNullOrWhiteSpace(parameters.SearchTerm))
-            {
-                return await _myContext.Companies.ToListAsync();
-            }
+            //if (string.IsNullOrWhiteSpace(parameters.CompanyName) && string.IsNullOrWhiteSpace(parameters.SearchTerm))
+            //{
+            //    return await _myContext.Companies.ToListAsync();
+            //}
 
             var queryExpression = _myContext.Companies as IQueryable<Company>;
 
@@ -87,8 +88,8 @@ namespace TianYing.Infrasturcture.Repositories
                 queryExpression = queryExpression.Where(x => x.Name.Contains(parameters.SearchTerm) ||
                   x.Introduction.Contains(parameters.SearchTerm));
             }
-
-            return await queryExpression.ToListAsync();
+  
+            return await PagedList<Company>.Create(queryExpression,parameters.PageNumber,parameters.PageSize) ;
         }
 
         public async Task<IEnumerable<Company>> GetCompaniesAsync(IEnumerable<Guid> CompanyIds)
@@ -107,12 +108,12 @@ namespace TianYing.Infrasturcture.Repositories
             {
                 throw new ArgumentNullException(nameof(CompanyId));
             }
-            return await _myContext.Companies.FirstOrDefaultAsync(x=>x.Id ==CompanyId);
+            return await _myContext.Companies.FirstOrDefaultAsync(x => x.Id == CompanyId);
         }
 
         public void UpdateCompany(Company company)
         {
-           // _myContext.Entry(company).State = EntityState.Modified;
+            // _myContext.Entry(company).State = EntityState.Modified;
         }
 
     }

@@ -254,7 +254,6 @@ G:\TianYing\TianYing\TianYing\bin\Debug\netcoreapp3.1\TianYing.Infrasturcture.pd
 G:\TianYing\TianYing\TianYing\obj\Debug\netcoreapp3.1\TianYing.csprojAssemblyReference.cache
 G:\TianYing\TianYing\TianYing\obj\Debug\netcoreapp3.1\staticwebassets\TianYing.StaticWebAssets.Manifest.cache
 G:\TianYing\TianYing\TianYing\obj\Debug\netcoreapp3.1\staticwebassets\TianYing.StaticWebAssets.xml
-G:\TianYing\TianYing\TianYing\obj\Debug\netcoreapp3.1\TianYing.MvcApplicationPartsAssemblyInfo.cache
 G:\TianYing\TianYing\TianYing\obj\Debug\netcoreapp3.1\TianYing.AssemblyInfoInputs.cache
 G:\TianYing\TianYing\TianYing\obj\Debug\netcoreapp3.1\TianYing.AssemblyInfo.cs
 G:\TianYing\TianYing\TianYing\obj\Debug\netcoreapp3.1\TianYing.RazorTargetAssemblyInfo.cache
@@ -263,4 +262,9 @@ G:\TianYing\TianYing\TianYing\obj\Debug\netcoreapp3.1\TianYing.dll
 G:\TianYing\TianYing\TianYing\obj\Debug\netcoreapp3.1\TianYing.pdb
 G:\TianYing\TianYing\TianYing\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
 G:\TianYing\TianYing\TianYing\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
-G:\TianYing\TianYing\TianYing\obj\Debug\netcoreapp3.1\TianYing.MvcApplicationPartsAssemblyInfo.cs
+G:\学习资料\站点\TianYing\TianYing\TianYing\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+G:\学习资料\站点\TianYing\TianYing\TianYing\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+G:\学习资料\站点\TianYing\TianYing\TianYing\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+G:\学习资料\站点\TianYing\TianYing\TianYing\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+G:\学习资料\站点\TianYing\TianYing\TianYing\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+G:\学习资料\站点\TianYing\TianYing\TianYing\obj\Debug\netcoreapp3.1\TianYing.MvcApplicationPartsAssemblyInfo.cs
